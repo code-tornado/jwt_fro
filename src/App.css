@@ -165,3 +165,7 @@ input, select, button {
     width: auto; /* Only shrink on larger screens */
   }
 }
+
+.login-error {
+  color: red;
+}

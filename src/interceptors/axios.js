@@ -22,10 +22,12 @@ axios.interceptors.response.use(
       try {
         // Attempt to refresh the access token
         const data = await AuthService.refresh();
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${data.access}`;
-        return axios(error.config); // Retry the failed request
+        if (data?.access) {
+          axios.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${data.access}`;
+          return axios(error.config); // Retry the failed request
+        }
       } catch (refreshError) {
         console.error("Refresh token invalid or expired", refreshError);
         localStorage.clear(); // Clear tokens if refresh fails

@@ -4,28 +4,6 @@ import { setToken } from "../redux/actions";
 import axios from "axios";
 
 export class AuthService {
-  static async login({ username, password }) {
-    axios
-      .post(
-        "/token/",
-        { username, password },
-        {
-          headers: { "Content-Type": "application/json" },
-        },
-        { withCredentials: true }
-      )
-      .then(({ data }) => {
-        store.dispatch(
-          setToken({
-            accessToken: data.access,
-            refreshToken: data.refresh,
-          })
-        );
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }
 
   static async refresh() {
     try {

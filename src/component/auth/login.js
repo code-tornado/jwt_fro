@@ -1,36 +1,38 @@
 import axios from "axios";
 import { useState } from "react";
-import { AuthService } from "../../services"
+import { useSetTokenAction } from "../../hooks/redux";
 
 // Define the Login function.
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // Create the submit method.
+
+  const setToken = useSetTokenAction();
+
+  const [error, setError] = useState("");
+
   const submit = async (e) => {
     e.preventDefault();
-    const user = {
-      username: username,
-      password: password,
-    };
 
-    await AuthService.login(user)
-    // Create the POST requuest
-    // const { data } = await axios.post(
-    //   "/token/",
-    //   user,
-    //   {
-    //     headers: { "Content-Type": "application/json" },
-    //   },
-    //   { withCredentials: true }
-    // );
-
-    // // Initialize the access & refresh token in localstorage.
-    // localStorage.clear();
-    // localStorage.setItem("access_token", data.access);
-    // localStorage.setItem("refresh_token", data.refresh);
-    // axios.defaults.headers.common["Authorization"] = `Bearer ${data["access"]}`;
-    // window.location.href = "/";
+    axios
+      .post(
+        "/token/",
+        { username, password },
+        {
+          headers: { "Content-Type": "application/json" },
+        },
+        { withCredentials: true }
+      )
+      .then(({ data }) => {
+        setError("");
+        setToken({
+          accessToken: data.access,
+          refreshToken: data.refresh,
+        });
+      })
+      .catch(() => {
+        setError("Username or password is not correct!");
+      });
   };
 
   return (
@@ -38,6 +40,9 @@ const Login = () => {
       <form className="Auth-form" onSubmit={submit}>
         <div className="Auth-form-content">
           <h3 className="Auth-form-title">Sign In</h3>
+
+          {error && <div className="login-error">{error}</div>}
+
           <div className="form-group mt-3">
             <label>Username</label>
             <input
