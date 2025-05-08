@@ -24,8 +24,8 @@ export const registerAction = (data) => async (dispatch) => {
 export const logoutAction = () => async (dispatch) => {
   try {
     await AuthService.logout();
-    localStorage.removeItem("access-token");
-    localStorage.removeItem("refresh-token");
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
     dispatch(setAccount(null));
     dispatch(setToken(null));
   } catch (err) {
