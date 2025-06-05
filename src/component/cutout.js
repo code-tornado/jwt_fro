@@ -373,7 +373,6 @@ const CutOut = () => {
                 <option value="PFF">PFF</option>
                 <option value="BVY">BVY</option>
                 <option value="LNTZ">LNTZ</option>
-                <option value="LNTZ1">LNTZ1</option>
                 <option value="DBLJ">DBLJ</option>
                 <option value="LRNZ">LRNZ</option>
                 <option value="NAB">NAB</option>
