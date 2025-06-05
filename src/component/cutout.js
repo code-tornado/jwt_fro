@@ -375,6 +375,7 @@ const CutOut = () => {
                 <option value="LNTZ">LNTZ</option>
                 <option value="DBLJ">DBLJ</option>
                 <option value="LRNZ">LRNZ</option>
+                <option value="LRNZ1">LRNZ1</option>
               </select>
 
               <div className="flex-group">
