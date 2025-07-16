@@ -369,7 +369,7 @@ const CutOut = () => {
               >
                 <option value="Select Plant">Select Plant</option>
                 <option value="CPM">CPM</option>
-                <option value="BMP">BMP</option>
+                <option value="RMNM">RMNM</option>
                 <option value="PFF">PFF</option>
                 <option value="BVY">BVY</option>
                 <option value="LNTZ">LNTZ</option>
