@@ -20,8 +20,8 @@ const Login = () => {
         { username, password },
         {
           headers: { "Content-Type": "application/json" },
-          withCredentials: true
-        }
+        },
+        { withCredentials: true }
       )
       .then(({ data }) => {
         setError("");
@@ -30,14 +30,8 @@ const Login = () => {
           refreshToken: data.refresh,
         });
       })
-      .catch((err) => {
-        if (err.response) {
-          setError("Username or password is not correct!");
-        } else if (err.code === "ERR_CERT_DATE_INVALID") {
-          setError("Secure connection to server failed. Please check SSL certificate.");
-        } else {
-          setError("An unexpected error occurred. Please try again.");
-        }
+      .catch(() => {
+        setError("Username or password is not correct!");
       });
   };
 
